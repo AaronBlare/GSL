@@ -37,6 +37,8 @@
 #include <type_traits> // for integral_constant<>::value, is_default_co...
 #include <vector>      // for vector
 
+#include <filesystem>
+
 namespace gsl
 {
 struct fail_fast;
@@ -66,6 +68,8 @@ GSL_SUPPRESS(con.4) // NO-FORMAT: attribute
 TEST_CASE("default_constructor")
 {
     {
+        auto test = std::filesystem::exists("a.txt");
+
         span<int> s;
         CHECK((s.size() == 0 && s.data() == nullptr));
 
